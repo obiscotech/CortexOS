@@ -1,0 +1,16 @@
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  roots: ['<rootDir>/src'],
+  testMatch: ['**/__tests__/**/*.ts', '**/*.test.ts'],
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.test.ts',
+    '!src/**/__tests__/**'
+  ],
+  coverageDirectory: 'coverage',
+  verbose: true,
+  transformIgnorePatterns: [
+    'node_modules/(?!(@mistralai|@anthropic-ai|@google|groq-sdk)/)',
+  ],
+};

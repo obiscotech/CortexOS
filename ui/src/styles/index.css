@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-dark-border;
+  }
+  
+  body {
+    @apply bg-dark-bg text-beige-100 antialiased;
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .dot-grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #0a0a0a;
+    background-image: 
+      radial-gradient(circle, #d4af37 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.15;
+  }
+
+  .mosaic-border {
+    border: 2px solid;
+    border-image: linear-gradient(135deg, #d4af37, #cd7f32, #c2b280) 1;
+  }
+
+  .glass-panel {
+    @apply bg-dark-surface/90 backdrop-blur-xl border border-beige-900/30 rounded-xl shadow-2xl;
+  }
+
+  .glass-panel-hover {
+    @apply glass-panel hover:bg-dark-hover/90 hover:border-beige-800/40 transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-mosaic-gold via-mosaic-bronze to-mosaic-sand bg-clip-text text-transparent;
+  }
+
+  .glow-border {
+    @apply border border-mosaic-gold/50 shadow-[0_0_20px_rgba(212,175,55,0.3)];
+  }
+
+  .mosaic-glow {
+    animation: mosaic-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes mosaic-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+    }
+  }
+
+  .task-card {
+    @apply glass-panel p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer;
+  }
+
+  .status-pending {
+    @apply bg-mosaic-bronze/20 text-mosaic-bronze border-mosaic-bronze/30;
+  }
+
+  .status-executing {
+    @apply bg-mosaic-gold/20 text-mosaic-gold border-mosaic-gold/30;
+  }
+
+  .status-completed {
+    @apply bg-beige-600/20 text-beige-400 border-beige-600/30;
+  }
+
+  .status-failed {
+    @apply bg-red-900/20 text-red-400 border-red-900/30;
+  }
+
+  .chat-input {
+    @apply w-full px-4 py-3 bg-dark-surface border border-beige-900/30 rounded-lg text-beige-100 placeholder-beige-700 focus:outline-none focus:border-mosaic-gold focus:ring-2 focus:ring-mosaic-gold/20 transition-all font-modern;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-mosaic-gold to-mosaic-bronze hover:from-mosaic-bronze hover:to-mosaic-gold text-dark-bg rounded-lg font-semibold transition-all mosaic-glow font-modern;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-dark-surface border border-beige-900/30 hover:border-mosaic-gold/50 text-beige-100 rounded-lg font-semibold transition-all font-modern;
+  }
+
+  .loading-dots::after {
+    content: '.';
+    animation: dots 1.5s steps(3, end) infinite;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(212, 175, 55, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .canvas-dot {
+    @apply w-2 h-2 rounded-full bg-mosaic-gold/30 hover:bg-mosaic-gold hover:scale-150 transition-all cursor-pointer;
+  }
+
+  .canvas-dot.active {
+    @apply bg-mosaic-gold scale-150;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #d4af37 #1a1a1a;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #cd7f32;
+  }
+}
